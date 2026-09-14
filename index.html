@@ -473,24 +473,24 @@ createApp({
    const days=ref([
      {day:'Day 1', weekDay:'FRI', display:'25',date:'Sep 25',city:'Tokyo (Mid-Autumn) / 東京（中秋節）',plans:[
        {time:'15:30',title:'Skyliner to Asakusa / 搭乘 Skyliner 前往淺草',note:'搭乘 Skyliner 直達上野/淺草區塊飯店 Check-in。 / Take the Skyliner directly to Ueno/Asakusa area hotel for check-in.', isWalk: true, transport:'<span class="text-slate-400">Transport / 交通:</span> Keisei Skyliner'},
-       {time:'17:00',title:'Asakusa Senso-ji & Nakamise / 淺草寺與仲見世通',note:'漫步仲見世商店街，品嚐現炸淺草炸肉餅與章魚小丸子，參拜淺草寺。 / Stroll through Nakamise shopping street, try fried minced meat cutlet and takoyaki, and visit Senso-ji Temple.', isArch: true},
-       {time:'19:30',title:'Asakusa Hoppy Street / 淺草 Hoppy 通夜飲',note:'【中秋夜飲】在充滿露天煙火氣的居酒屋巷弄坐下，享用燉煮牛筋、炭火串燒與冰涼生啤酒。 / [Mid-Autumn Drinks] Enjoy beef tendon stew, charcoal skewers, and cold beer at the lively open-air izakaya alley.', isFood: true, isNight: true}
+       {time:'17:00',title:'Asakusa Senso-ji & Nakamise / 淺草雷門與下町漫步',note:'前往淺草穿過雷門，漫步仲見世商店街，品嚐現炸淺草炸肉餅與章魚小丸子，參拜淺草寺。 / Head to Asakusa through Kaminarimon, stroll along Nakamise shopping street, enjoy freshly fried minced meat cutlet and takoyaki, and visit Senso-ji Temple.', isArch: true},
+       {time:'19:30',title:'Asakusa Hoppy Street / 淺草 Hoppy 通夜飲',note:'【中秋夜飲】直接在淺草 Hoppy 通（ホッピー通り）充滿露天煙火氣的居酒屋巷弄坐下，享用燉煮牛筋（牛すじ込み）、炭火串燒與冰涼生啤酒，在地歡度中秋。 / [Mid-Autumn Drinks] Sit down at the lively open-air izakaya alley of Hoppy Street in Asakusa, enjoy beef tendon stew, charcoal skewers, and cold draft beer to celebrate Mid-Autumn locally.', isFood: true, isNight: true}
      ]},
      {day:'Day 2', weekDay:'SAT', display:'26',date:'Sep 26',city:'Tokyo / 東京',plans:[
        {time:'11:00',title:'Imperial Palace Gaien / 皇居外苑',note:'悠閒前往皇居外苑，漫步於寬闊護城河與松樹林間。 / Stroll leisurely through the spacious moats and pine groves of the Imperial Palace Gaien.', isArch: true},
-       {time:'13:00',title:'Daikanyama & Omotesando / 代官山與表參道 (Loft 尋寶)',note:'漫步 T-Site 蔦屋書店與表參道，順道前往 Loft 尋找特色文具與雜貨。 / Walk through Daikanyama T-Site and Omotesando, and visit Loft for stationery and lifestyle goods.', isWalk: true},
+       {time:'13:00',title:'Daikanyama & Omotesando / 代官山咖啡美學與原宿散策',note:'前往代官山漫步 T-Site 蔦屋書店、Monkey Cafe 螺旋木建築，享受獨立手沖咖啡，隨後漫步至原宿/表參道感受街頭美學（可順逛原宿哈利波特旗艦店 Mahou Dokoro、HARBS 水果千層蛋糕、Loft 雜貨）。 / Head to Daikanyama for T-Site, Monkey Cafe, and pour-over coffee, then stroll to Harajuku/Omotesando for street aesthetics (optional: Mahou Dokoro Harry Potter flagship, HARBS, Loft).', isWalk: true},
        {time:'17:00',title:'Shinjuku Shopping & Tokyo Gov Bldg / 新宿購物與都廳夜景',note:'前往新宿 Isetan / 高島屋購物，登上東京都廳免費展望台看高空夜景。 / Shop at Shinjuku Isetan/Takashimaya and enjoy free night views from the Tokyo Metropolitan Government Building.', isNight: true},
-       {time:'20:00',title:'Omoide Yokocho & Hidden Bar / 思出橫丁與隱密酒吧',note:'體驗懷舊串燒，隨後隨性走進新宿巷弄隱密酒吧喝一杯威士忌。 / Experience retro yakitori at Omoide Yokocho, then drop by a hidden alleyway bar for whisky.', isFood: true, isNight: true}
+       {time:'20:00',title:'Omoide Yokocho & Hidden Bar / 思出橫丁與隱密酒吧',note:'夜間穿梭思出橫丁體驗懷舊串燒，隨後隨性走進新宿巷弄隱密酒吧（Hidden Bar / Bar BenFiddich 風格）喝一杯威士忌。 / Experience retro yakitori at Omoide Yokocho at night, then drop by a hidden alleyway bar (Hidden Bar / Bar BenFiddich style) for a glass of whisky.', isFood: true, isNight: true}
      ]},
      {day:'Day 3', weekDay:'SUN', display:'27',date:'Sep 27',city:'Tokyo / 東京',plans:[
        {time:'11:00',title:'Kappabashi Kitchenware Town / 合羽橋道具街',note:'在專業刀具專門店 Cutlery Tsubaya 挑選職人手打高品質日本廚刀。 / Pick out high-quality handcrafted Japanese kitchen knives at Cutlery Tsubaya.', isWalk: true},
-       {time:'12:30',title:'Ginza Omakase & Itoya / 銀座 Omakase 與 Itoya (Loft 旗艦)',note:'前往銀座品嚐午間極鮮 Omakase 壽司，隨後開逛 Ginza Itoya 與銀座 Loft 旗艦店。 / Enjoy midday Omakase sushi in Ginza, then explore Ginza Itoya and Ginza Loft flagship store.', isFood: true},
+       {time:'12:30',title:'Ginza Omakase & Itoya / 銀座 Omakase 與 Itoya',note:'前往銀座品嚐高性價比午間極鮮 Omakase 壽司盛宴，隨後開逛 Ginza Itoya 與百貨地下街。 / Enjoy a cost-effective midday Omakase sushi feast in Ginza, then explore Ginza Itoya and department store basements.', isFood: true},
        {time:'18:00',title:'Tokyo Station Marunouchi & KITTE / 東京站丸之內與 KITTE',note:'登上 KITTE 4F/6F 屋頂庭園，俯瞰百年紅磚車站建築的絕美照明與都市天際線。 / Head to KITTE rooftop garden to view the beautifully illuminated historic red-brick Tokyo Station.', isArch: true, isNight: true},
        {time:'20:00',title:'Ichiran Ramen Ueno / 上野一蘭拉麵',note:'返回上野前往一蘭拉麵朝聖，滿足在日本吃一蘭的心願。 / Return to Ueno to visit Ichiran Ramen and satisfy the wish of eating Ichiran in Japan.', isFood: true}
      ]},
      {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo / 東京',plans:[
        {time:'11:00',title:'Shimokitazawa Subculture Walk / 下北澤次文化散策',note:'漫步於古著巷弄、BONUS TRACK 木造社區與幾何街區，午餐品嚐北海道湯咖哩。 / Stroll through Shimokitazawa vintage alleys and wooden communities, and enjoy Hokkaido soup curry for lunch.', isWalk: true, isFood: true},
-       {time:'15:00',title:'Tokyo Station Yaesu Whisky & Shopping / 東京站八重洲尋酒與購物',note:'前往八重洲地下街 Liquors Hasegawa 尋找威士忌，並探索周邊特色小店。 / Visit Liquors Hasegawa in Yaesu underground mall for whisky and explore specialty shops.', isWalk: true},
+       {time:'15:00',title:'Tokyo Station Yaesu Whisky & Shopping / 東京站八重洲尋酒與掃貨',note:'前往八重洲地下街 Liquors Hasegawa 尋找 Kilchoman 日本限定版威士忌，並進行藥妝與唐吉訶德掃貨。 / Visit Liquors Hasegawa in Yaesu underground mall for Japanese limited whisky, followed by drugstores and Don Quijote shopping.', isWalk: true},
        {time:'18:30',title:'Roppongi Hills & Tokyo Tower / 六本木與東京鐵塔夜景',note:'近距離欣賞標誌性的東京鐵塔璀璨夜景，隨後與老同學於社區小酒館乾杯。 / Admire the iconic Tokyo Tower night view near Roppongi Hills, then share drinks with an old friend at a local bistro.', isNight: true}
      ]},
      {day:'Day 5', weekDay:'TUE', display:'29',date:'Sep 29',city:'Tokyo (Kiyosumi-shirakawa) / 東京清澄白河',plans:[
@@ -549,6 +549,7 @@ createApp({
    });
 
    const attractionDetails = [
+      { city: 'TYO', name: '原宿哈利波特旗艦店 (Mahou Dokoro)', tag: 'Shopping / 購物', desc: '原宿官方授權的哈利波特周邊專賣店，提供豐富的魔法世界精品與伴手禮。 / Official Harry Potter merchandise store in Harajuku offering magical wizarding world goods and souvenirs.', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=300&auto=format&fit=crop', address: '東京都渋谷区神宮前 1-11-6' },
       { city: 'TYO', name: 'Loft (澀谷/銀座/池袋旗艦店)', tag: 'Shopping / 購物', desc: '日本最具代表性的生活雜貨與文具選物店，滿足尋找特色手帳與伴手禮的需求。 / Japan\'s iconic lifestyle and stationery department store for unique souvenirs and goods.', img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop', address: '東京都渋谷区宇田川町 21-1 (澀谷店)' },
       { city: 'TYO', name: '新宿 (Shinjuku)', tag: 'Landmark / 地標', desc: '集結購物商場、高空展望台與懷舊橫丁的東京核心繁華街區。 / Core bustling district of Tokyo featuring shopping malls, observation decks, and retro alleys.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0255.webp', address: '東京都新宿区' },
       { city: 'TYO', name: '皇居外苑 (Imperial Palace Gaien)', tag: 'Garden / 庭園', desc: '擁有寬闊護城河、松樹林與歷史美景的市中心自然休憩勝地。 / Central natural retreat featuring spacious moats, pine forests, and historic scenery.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0256.webp', address: '東京都千代田区皇居外苑 1-1' },
