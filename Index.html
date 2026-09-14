@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Tokyo Ultimate Trip 2026</title>
+
+<!-- --- 📱 App Icons --- -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/kerryraquel/Asia-Trip-2026/c5cbc4bbcb0b0f6069a012669df4c39bffe3f3bc/app%20icon%20tokyo.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kerryraquel/Asia-Trip-2026/c5cbc4bbcb0b0f6069a012669df4c39bffe3f3bc/app%20icon%20tokyo.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.5.12/dist/vue.global.prod.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #2563eb;
+  --bg-color: #f1f5f9;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: var(--bg-color);
+  color: #334155;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-bg {
+  background-image: url('https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?q=80&w=1000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center bottom;
+  position: fixed; inset: 0; z-index: -2;
+}
+
+.app-overlay {
+  background: linear-gradient(to bottom, rgba(241, 245, 249, 0.2) 0%, rgba(241, 245, 249, 0.5) 100%);
+  position: fixed; inset: 0; z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.timeline { position: relative; padding-left: 1.5rem; border-left: 2px solid #e2e8f0; margin-left: 0.5rem; }
+.timeline-item { position: relative; margin-bottom: 2rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -1.95rem; top: 0.35rem;
+  width: 14px; height: 14px;
+  background: var(--primary); border: 3px solid #fff;
+  border-radius: 50%; box-shadow: 0 0 0 2px #bfdbfe;
+}
+.timeline-dot.food { background: #f59e0b; box-shadow: 0 0 0 2px #fde68a; }
+.timeline-dot.arch { background: #7c3aed; box-shadow: 0 0 0 2px #ddd6fe; }
+.timeline-dot.walk { background: #10b981; box-shadow: 0 0 0 2px #a7f3d0; }
+.timeline-dot.night { background: #1e3a8a; box-shadow: 0 0 0 2px #93c5fd; }
+.timeline-dot.relax { background: #ec4899; box-shadow: 0 0 0 2px #fbcfe8; }
+
+.transport-tag {
+  display: inline-block; font-size: 0.75rem; background-color: #eff6ff; color: #3b82f6;
+  padding: 8px 12px; border-radius: 8px; margin-top: 8px; font-weight: 600;
+  border: 1px solid #dbeafe; line-height: 1.4; width: 100%;
+}
+.transport-tag i { margin-right: 4px; width: 14px; text-align: center; }
+
+.day-scroll {
+  display: flex; overflow-x: auto; gap: 0.75rem; padding: 0.5rem 0.25rem 1rem 0.25rem; scrollbar-width: none;
+}
+.day-scroll::-webkit-scrollbar { display: none; }
+.day-tab {
+  flex: 0 0 auto; min-width: 68px; height: 76px; background: rgba(255, 255, 255, 0.9); 
+  border-radius: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.2s ease; border: 1px solid transparent; cursor: pointer;
+}
+.day-tab.active {
+  background: #2563eb; color: white; box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px); border: 1px solid rgba(255,255,255,0.2);
+}
+
+.bottom-nav-container { position: fixed; bottom: 0; left: 0; right: 0; padding: 0 1rem 1.5rem 1rem; z-index: 50; pointer-events: none; }
+.bottom-nav {
+  pointer-events: auto; display: flex; justify-content: space-around;
+  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px);
+  border-radius: 2rem; padding: 0.5rem 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.15); max-width: 400px; margin: 0 auto;
+}
+.nav-btn {
+  display: flex; flex-direction: column; align-items: center; background: none; border: none;
+  color: #94a3b8; font-size: 0.7rem; font-weight: 600; padding: 0.5rem; gap: 4px; transition: 0.3s; cursor: pointer;
+}
+.nav-btn.active { color: var(--primary); }
+.nav-btn i { font-size: 1.25rem; margin-bottom: 2px; }
+</style>
+</head>
+
+<body>
+<div id="app">
+  <div class="app-bg"></div>
+  <div class="app-overlay"></div>
+
+  <div class="max-w-md mx-auto px-4 pt-6 pb-32 relative z-10">
+    
+    <header class="flex justify-between items-start mb-6">
+      <div class="drop-shadow-md pt-1">
+        <h1 class="text-xl font-black text-slate-800 tracking-tight leading-tight" style="text-shadow: 0 2px 4px rgba(255,255,255,0.8);">Tokyo Ultimate Trip<br>Sep 25 - Sep 30</h1>
+      </div>
+      
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center justify-end gap-2 text-slate-800 bg-white/60 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm w-28">
+          <div class="text-right flex-1">
+            <div class="text-[10px] font-bold text-slate-500">TYO</div>
+            <div class="font-bold text-sm leading-none">{{ weatherTyo.temp }}°C</div>
+          </div>
+          <i :class="[weatherTyo.icon, 'text-lg text-blue-500 w-5 text-center']"></i>
+        </div>
+      </div>
+    </header>
+
+    <transition name="fade" mode="out-in">
+      
+      <!-- 📅 Itinerary -->
+      <section v-if="tab==='plan'" key="plan">
+        <div class="glass-card !py-3 !px-4 mb-4 flex items-center gap-3">
+          <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-hourglass-half text-sm"></i>
+          </div>
+          <div class="text-sm font-bold text-slate-700">{{ countText }}</div>
+        </div>
+
+        <div class="day-scroll">
+          <div v-for="d in days" :key="d.date" @click="selDay=d"
+               :class="['day-tab', selDay.date===d.date?'active':'']">
+            <div class="text-[10px] font-black tracking-wider opacity-70">{{ d.weekDay }}</div>
+            <div class="text-xl font-black leading-none my-0.5">{{ d.display }}</div>
+            <div class="text-[9px] opacity-80 uppercase">{{ d.day }}</div>
+          </div>
+        </div>
+
+        <div class="glass-card mt-2">
+          <div class="flex justify-between items-end mb-6 border-b border-slate-200 pb-3">
+            <div>
+              <h2 class="text-lg font-bold text-slate-800 flex items-center">
+                {{ selDay.city }}
+                <span class="ml-2 text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">{{ selDay.date }}</span>
+              </h2>
+            </div>
+          </div>
+          
+          <div class="timeline">
+            <div v-for="p in selDay.plans" :key="p.time" class="timeline-item">
+              <div :class="['timeline-dot', p.isFood ? 'food' : '', p.isArch ? 'arch' : '', p.isWalk ? 'walk' : '', p.isNight ? 'night' : '', p.isRelax ? 'relax' : '']"></div>
+              
+              <div class="flex flex-col">
+                <div class="flex items-baseline gap-2 mb-1">
+                  <span class="text-sm font-black text-blue-600 font-mono">{{ p.time }}</span>
+                  <span class="text-base font-bold text-slate-800">
+                    <i v-if="p.isFood" class="fa-solid fa-utensils text-amber-500 mr-1 text-xs"></i>
+                    <i v-if="p.isArch" class="fa-solid fa-landmark text-purple-500 mr-1 text-xs"></i>
+                    <i v-if="p.isWalk" class="fa-solid fa-person-walking-luggage text-emerald-500 mr-1 text-xs"></i>
+                    <i v-if="p.isNight" class="fa-solid fa-moon text-blue-800 mr-1 text-xs"></i>
+                    <i v-if="p.isRelax" class="fa-solid fa-spa text-pink-500 mr-1 text-xs"></i>
+                    {{ p.title }}
+                  </span>
+                </div>
+                
+                <span class="text-sm text-slate-500 leading-relaxed p-2 rounded-lg border mb-1 block bg-white/50 border-slate-100">
+                  {{ p.note }}
+                </span>
+
+                <div v-if="p.transport" class="transport-tag">
+                  <span v-html="p.transport"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ℹ Info -->
+      <section v-if="tab==='info'" key="info">
+        <div class="glass-card">
+          <h2 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Trip Overview & Info</h2>
+          <div class="bg-white border border-slate-100 p-4 rounded-xl mb-4 shadow-sm relative overflow-hidden">
+             <div class="relative z-10">
+               <div class="flex justify-between items-center mb-2">
+                 <h3 class="font-bold text-lg text-slate-800">Tokyo Accommodation</h3>
+                 <span class="text-[10px] font-bold bg-indigo-50 text-indigo-500 px-2 py-1 rounded-full">Sep 25 - Sep 30</span>
+               </div>
+               <div class="text-sm text-slate-600 mb-1 flex items-center">
+                 <i class="fa-solid fa-bed mr-2 text-slate-400"></i> 未定 (TBD)
+               </div>
+               <div class="text-xs text-amber-500 pl-6 font-bold"><i class="fa-solid fa-clock"></i> Pending Selection</div>
+             </div>
+          </div>
+        </div>
+
+        <!-- Attraction Guide with Thumbnails -->
+        <div class="glass-card mt-4">
+          <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+            <i class="fa-solid fa-circle-info text-blue-500 mr-2"></i> Attraction & Restaurant Guide
+          </h2>
+          <div class="space-y-3">
+            <div v-for="item in attractionDetails" :key="item.name" class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex gap-3 items-center">
+               <img :src="item.img" :alt="item.name" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+               <div class="flex-1">
+                 <div class="flex items-center justify-between mb-1">
+                   <h3 class="font-bold text-slate-800 text-sm">{{ item.name }}</h3>
+                   <span class="text-[10px] text-slate-400 border border-slate-200 px-1.5 py-0.5 rounded">{{ item.tag }}</span>
+                 </div>
+                 <p class="text-xs text-slate-500 leading-relaxed mb-1">{{ item.desc }}</p>
+                 <div v-if="item.address" class="text-[10px] text-blue-600 font-medium flex items-center gap-1">
+                   <i class="fa-solid fa-location-dot"></i> {{ item.address }}
+                 </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </transition>
+  </div>
+
+  <div class="bottom-nav-container">
+    <nav class="bottom-nav">
+      <button :class="['nav-btn', tab==='plan'?'active':'']" @click="tab='plan'">
+        <i class="fa-solid fa-calendar-day"></i><span>Itinerary</span>
+      </button>
+      <button :class="['nav-btn', tab==='info'?'active':'']" @click="tab='info'">
+        <i class="fa-solid fa-circle-info"></i><span>Info</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<script>
+const {createApp,ref,computed,onMounted}=Vue;
+createApp({
+  setup(){
+   const tab=ref('plan');
+   const weatherTyo=ref({temp:'--',icon:'fa-solid fa-spinner fa-spin'});
+
+   const updateWeather = async () => {
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&current_weather=true`);
+        const data = await res.json();
+        weatherTyo.value = { temp: Math.round(data.current_weather.temperature), icon: 'fa-solid fa-sun text-blue-500' };
+      } catch (e) {
+        weatherTyo.value = { temp: '--', icon:'fa-solid fa-cloud' };
+      }
+   };
+   onMounted(updateWeather);
+
+   const start=new Date('2026-09-25T00:00:00');
+   const end=new Date('2026-09-30T23:59:59');
+   const countText=computed(()=>{
+     const now=new Date();
+     const diffStart=Math.ceil((start-now)/(1000*60*60*24));
+     if(now<start)return`${diffStart} Days until Tokyo trip!`;
+     if(now>=start&&now<=end)return`Trip in progress`;
+     return`Trip has ended`;
+   });
+
+   const days=ref([
+     {day:'Day 1', weekDay:'FRI', display:'25',date:'Sep 25',city:'Tokyo (Mid-Autumn)',plans:[
+       {time:'15:30',title:'Skyliner to Asakusa',note:'搭乘 Skyliner 直達上野/淺草區塊飯店 Check-in。', isWalk: true, transport:'<span class="text-slate-400">Transport:</span> Keisei Skyliner'},
+       {time:'17:00',title:'Asakusa Senso-ji & Nakamise',note:'漫步仲見世商店街，品嚐現炸淺草炸肉餅與章魚小丸子，參拜淺草寺。', isArch: true},
+       {time:'19:30',title:'Asakusa Hoppy Street',note:'【中秋夜飲】在充滿露天煙火氣的居酒屋巷弄坐下，享用燉煮牛筋、炭火串燒與冰涼生啤酒。', isFood: true, isNight: true}
+     ]},
+     {day:'Day 2', weekDay:'SAT', display:'26',date:'Sep 26',city:'Tokyo',plans:[
+       {time:'11:00',title:'Imperial Palace Gaien',note:'悠閒前往皇居外苑，漫步於寬闊護城河與松樹林間。', isArch: true},
+       {time:'13:00',title:'Daikanyama & Omotesando',note:'漫步 T-Site 蔦屋書店、Monkey Cafe 螺旋木建築，享受手沖咖啡，隨後漫步至原宿/表參道。', isWalk: true},
+       {time:'17:00',title:'Shinjuku Shopping & Tokyo Gov Bldg',note:'前往新宿 Isetan / 高島屋購物，登上東京都廳免費展望台看高空夜景。', isNight: true},
+       {time:'20:00',title:'Omoide Yokocho & Hidden Bar',note:'體驗懷舊串燒，隨後隨性走進新宿巷弄隱密酒吧喝一杯威士忌。', isFood: true, isNight: true}
+     ]},
+     {day:'Day 3', weekDay:'SUN', display:'27',date:'Sep 27',city:'Tokyo',plans:[
+       {time:'11:00',title:'Kappabashi Kitchenware Town',note:'在專業刀具專門店 Cutlery Tsubaya 挑選職人手打高品質日本廚刀。', isWalk: true},
+       {time:'12:30',title:'Ginza Omakase & Itoya',note:'前往銀座品嚐高性價比午間極鮮 Omakase 壽司盛宴，隨後開逛 Ginza Itoya 與百貨地下街。', isFood: true},
+       {time:'18:00',title:'Tokyo Station Marunouchi & KITTE',note:'登上 KITTE 4F/6F 屋頂庭園，俯瞰百年紅磚車站建築的絕美照明與都市天際線。', isArch: true, isNight: true},
+       {time:'20:00',title:'Ichiran Ramen Ueno',note:'返回上野前往一蘭拉麵朝聖，滿足在日本吃一蘭的心願。', isFood: true}
+     ]},
+     {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo',plans:[
+       {time:'11:00',title:'Shimokitazawa Subculture Walk',note:'漫步於古著巷弄、BONUS TRACK 木造社區與幾何街區，午餐品嚐北海道湯咖哩。', isWalk: true, isFood: true},
+       {time:'15:00',title:'Tokyo Station Yaesu Whisky & Shopping',note:'前往八重洲地下街 Liquors Hasegawa 尋找 Kilchoman 日本限定版威士忌，並進行藥妝與唐吉訶德掃貨。', isWalk: true},
+       {time:'18:30',title:'Roppongi Hills & Tokyo Tower',note:'近距離欣賞標誌性的東京鐵塔璀璨夜景，隨後與老同學於社區小酒館乾杯。', isNight: true}
+     ]},
+     {day:'Day 5', weekDay:'TUE', display:'29',date:'Sep 29',city:'Tokyo (Kiyosumi-shirakawa)',plans:[
+       {time:'10:30',title:'Kiyosumi Gardens',note:'漫步清澄庭園，欣賞傳統迴遊式林泉庭園的優美景致與假山池泉。', isArch: true},
+       {time:'12:30',title:'Blue Bottle Coffee Flagship',note:'造訪清澄白河 Blue Bottle Coffee 創始店，享受極致手沖咖啡與悠閒氛圍。', isFood: true},
+       {time:'14:30',title:'Maxell Aqua Park Shinagawa',note:'欣賞現代聲光影音與水族海洋生物結合的夢幻展演。', isRelax: true},
+       {time:'19:00',title:'Farewell Wagyu / Sukiyaki Dinner',note:'前往銀座或六本木享用頂級和牛燒肉或老牌壽喜燒盛宴，為旅程劃下句點。', isFood: true}
+     ]},
+     {day:'Day 6', weekDay:'WED', display:'30',date:'Sep 30',city:'Tokyo -> Home',plans:[
+       {time:'11:00',title:'Check-out & Skyliner to NRT',note:'自然醒辦理退房，於上野搭乘京成 Skyliner 直達成田國際機場。', isWalk: true},
+       {time:'13:00',title:'Narita Airport Duty Free Shopping',note:'逛 Traveler\'s Factory，於 Fa-So-La 採買威士忌與獺祭，掃貨 Press Butter Sand 甜點。', isWalk: true},
+       {time:'16:00',title:'Flight to Macau',note:'帶著滿載的手工廚刀、威士忌與戰利品搭機返回。', isWalk: true}
+     ]}
+   ]);
+   const selDay=ref(days.value[0]);
+
+   const attractionDetails = [
+      { city: 'TYO', name: '新宿 (Shinjuku)', tag: 'Landmark', desc: '集結購物商場、高空展望台與懷舊橫丁的東京核心繁華街區。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0255.webp', address: '東京都新宿区' },
+      { city: 'TYO', name: '皇居外苑 (Imperial Palace Gaien)', tag: 'Garden', desc: '擁有寬闊護城河、松樹林與歷史美景的市中心自然休憩勝地。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0256.webp', address: '東京都千代田区皇居外苑 1-1' },
+      { city: 'TYO', name: '淺草 Hoppy 通 (Hoppy Street)', tag: 'Food', desc: '充滿露天煙火氣與在地人情味的懷舊居酒屋巷弄。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0257.webp', address: '東京都台東区浅草 2-3' },
+      { city: 'TYO', name: '思出橫丁 (Omoide Yokocho)', tag: 'Food', desc: '充滿昭和復古風情的狹窄串燒居酒屋聚集地。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0258.jpeg', address: '東京都新宿区西新宿 1-2' },
+      { city: 'TYO', name: '原宿 (Harajuku)', tag: 'Culture', desc: '引領日本街頭流行美學與次文化的重要潮流據點。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0259.webp', address: '東京都渋谷区原宿' },
+      { city: 'TYO', name: '代官山 (Daikanyama)', tag: 'Culture', desc: '充滿優雅氛圍、獨立書店與精緻咖啡美學的高級住宅散策區。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0260.jpeg', address: '東京都渋谷区代官山町' },
+      { city: 'TYO', name: '仲見世通 (Nakamise-dori)', tag: 'Culture', desc: '位於淺草寺前的歷史悠久商店街，沿路販售各式傳統小吃與伴手禮。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/39cc66dc513ea5c93763f7f7fabeee59fdaa6525/IMG_0252.webp', address: '東京都台東区浅草 2-3-1' },
+      { city: 'TYO', name: '清澄庭園 (Kiyosumi Gardens)', tag: 'Garden', desc: '以泉水、假山和名石為特色的東京都指定名勝迴遊式林泉庭園。', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/39cc66dc513ea5c93763f7f7fabeee59fdaa6525/IMG_0253.webp', address: '東京都江東区清澄 3-3-9' },
+      { city: 'TYO', name: 'Blue Bottle Coffee', tag: 'Cafe', desc: '清澄白河旗艦店，享受極致手沖咖啡與悠閒極簡空間。', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=300&auto=format&fit=crop', address: '東京都江東区平野 1-4-8' },
+      { city: 'TYO', name: 'スシエビスHana恵比寿本店 (Sushi Ebisu Hana)', tag: 'Dining', desc: '人氣爆紅的壽司居酒屋，提供高性價比的創意壽司與海鮮料理。', img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=300&auto=format&fit=crop', address: '東京都渋谷区恵比寿西 1-9-4' },
+      { city: 'TYO', name: '京辰 (Sushi Kyotatsu)', tag: 'Dining', desc: '嚴選頂級新鮮食材的江戶前壽司名店，職人手作滋味細緻。', img: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=300&auto=format&fit=crop', address: '東京都中央区築地 4-13-18' },
+      { city: 'TYO', name: '根室花丸 (Nemuro Hanamaru) 回転寿司', tag: 'Dining', desc: '超人氣北海道根室直送迴轉壽司，鮮美干貝與生鮮食材大受好評。', img: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=300&auto=format&fit=crop', address: '東京都千代田区丸の内 2-7-2 JPタワー KITTE 5F' },
+      { city: 'TYO', name: '竹葉亭 (Chikuyotei)', tag: 'Dining', desc: '百年歷史的頂級鰻魚飯老店，炭烤蒲燒鰻魚口感鬆軟綿密。', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 8-14-7' },
+      { city: 'TYO', name: '鮨よしかわ勝 銀座 (Sushi Yoshikawa Masaru Ginza)', tag: 'Dining', desc: '銀座精緻高雅的無菜單 Omakase 壽司料理，體驗極致味蕾饗宴。', img: 'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 6-4-3' },
+      { city: 'TYO', name: 'りょうけん六本木 (Ryoken Roppongi)', tag: 'Dining', desc: '六本木高級私密割烹料理，融合當季食材的藝術級懷石饗宴。', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=300&auto=format&fit=crop', address: '東京都港区六本木 4-12-12' },
+      { city: 'TYO', name: '鮨はつめ 新宿 (Sushi Hatsume Shinjuku)', tag: 'Dining', desc: '新宿隱密性極高的頂級壽司店，職人手藝精湛、嚴選當令漁獲。', img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=300&auto=format&fit=crop', address: '東京都新宿区歌舞伎町 1-1-16' },
+      { city: 'TYO', name: 'YAKINIKU MARUUSHI', tag: 'Dining', desc: '嚴選黑毛和牛的高級燒肉名店，肉質油花均勻、入口即化。', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 1-5-10' },
+      { city: 'TYO', name: 'モリタ屋 (Moritaya)', tag: 'Dining', desc: '京都起家的百年老牌壽喜燒名店，品嚐頂級和牛與濃郁醬汁交織的美味。', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=300&auto=format&fit=crop', address: '東京都千代田区丸の内 2-7-2 KITTE 5F' }
+   ];
+
+   return{tab,weatherTyo,countText,days,selDay,attractionDetails};
+   }
+}).mount('#app');
+</script>
+</body>
+</html>
