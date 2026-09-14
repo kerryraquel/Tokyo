@@ -6,8 +6,8 @@
 <title>Tokyo Trip 2026</title>
 
 <!-- --- 📱 App Icons --- -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/kerryraquel/Asia-Trip-2026/c5cbc4bbcb0b0f6069a012669df4c39bffe3f3bc/app%20icon%20tokyo.png">
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kerryraquel/Asia-Trip-2026/c5cbc4bbcb0b0f6069a012669df4c39bffe3f3bc/app%20icon%20tokyo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/kerryraquel/Travel-Image/f35a8a77cecf5f62393862e8c8a8c85a4cd7ca8b/IMG_0264.jpeg">
+<link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/kerryraquel/Travel-Image/f35a8a77cecf5f62393862e8c8a8c85a4cd7ca8b/IMG_0264.jpeg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -32,16 +32,16 @@ body {
 }
 
 .app-bg {
-  background-image: url('https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?q=80&w=1000&auto=format&fit=crop');
+  background-image: url('https://raw.githubusercontent.com/kerryraquel/Travel-Image/ea49ec6ae726f671fddd28f568e116903763d2f7/IMG_0267.jpeg');
   background-size: cover;
   background-position: center bottom;
   position: fixed; inset: 0; z-index: -2;
 }
 
 .app-overlay {
-  background: linear-gradient(to bottom, rgba(241, 245, 249, 0.2) 0%, rgba(241, 245, 249, 0.5) 100%);
+  background: linear-gradient(to bottom, rgba(241, 245, 249, 0.3) 0%, rgba(241, 245, 249, 0.6) 100%);
   position: fixed; inset: 0; z-index: -1;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 }
 
 .glass-card {
@@ -75,6 +75,12 @@ body {
   border: 1px solid #dbeafe; line-height: 1.4; width: 100%;
 }
 .transport-tag i { margin-right: 4px; width: 14px; text-align: center; }
+
+.ticket-badge {
+  display: inline-block; font-size: 0.65rem; background-color: #dcfce7;
+  color: #166534; padding: 2px 6px; border-radius: 4px; margin-left: 6px;
+  vertical-align: middle; border: 1px solid #bbf7d0;
+}
 
 .day-scroll {
   display: flex; overflow-x: auto; gap: 0.75rem; padding: 0.5rem 0.25rem 1rem 0.25rem; scrollbar-width: none;
@@ -144,7 +150,7 @@ body {
     
     <header class="flex justify-between items-start mb-6">
       <div class="drop-shadow-md pt-1">
-        <h1 class="text-xl font-black text-slate-800 tracking-tight leading-tight" style="text-shadow: 0 2px 4px rgba(255,255,255,0.8);">Tokyo Trip<br>Sep 25 - Sep 30</h1>
+        <h1 class="text-xl font-black text-slate-800 tracking-tight leading-tight" style="text-shadow: 0 2px 4px rgba(255,255,255,0.8);">Tokyo Trip<br>Sep 25 - Sep 30 / 東京之旅</h1>
       </div>
       
       <div class="flex flex-col gap-2">
@@ -202,6 +208,7 @@ body {
                     <i v-if="p.isNight" class="fa-solid fa-moon text-blue-800 mr-1 text-xs"></i>
                     <i v-if="p.isRelax" class="fa-solid fa-spa text-pink-500 mr-1 text-xs"></i>
                     {{ p.title }}
+                    <span v-if="p.hasTicket" class="ticket-badge"><i class="fa-solid fa-check"></i> Booked / 已預訂</span>
                   </span>
                 </div>
                 
@@ -471,19 +478,19 @@ createApp({
      ]},
      {day:'Day 2', weekDay:'SAT', display:'26',date:'Sep 26',city:'Tokyo / 東京',plans:[
        {time:'11:00',title:'Imperial Palace Gaien / 皇居外苑',note:'悠閒前往皇居外苑，漫步於寬闊護城河與松樹林間。 / Stroll leisurely through the spacious moats and pine groves of the Imperial Palace Gaien.', isArch: true},
-       {time:'13:00',title:'Daikanyama & Omotesando / 代官山與表參道',note:'漫步 T-Site 蔦屋書店、Monkey Cafe 螺旋木建築，享受手沖咖啡，隨後漫步至原宿/表參道。 / Walk through Daikanyama T-Site, Monkey Cafe, enjoy pour-over coffee, and head to Harajuku/Omotesando.', isWalk: true},
+       {time:'13:00',title:'Daikanyama & Omotesando / 代官山與表參道 (Loft 尋寶)',note:'漫步 T-Site 蔦屋書店與表參道，順道前往 Loft 尋找特色文具與雜貨。 / Walk through Daikanyama T-Site and Omotesando, and visit Loft for stationery and lifestyle goods.', isWalk: true},
        {time:'17:00',title:'Shinjuku Shopping & Tokyo Gov Bldg / 新宿購物與都廳夜景',note:'前往新宿 Isetan / 高島屋購物，登上東京都廳免費展望台看高空夜景。 / Shop at Shinjuku Isetan/Takashimaya and enjoy free night views from the Tokyo Metropolitan Government Building.', isNight: true},
        {time:'20:00',title:'Omoide Yokocho & Hidden Bar / 思出橫丁與隱密酒吧',note:'體驗懷舊串燒，隨後隨性走進新宿巷弄隱密酒吧喝一杯威士忌。 / Experience retro yakitori at Omoide Yokocho, then drop by a hidden alleyway bar for whisky.', isFood: true, isNight: true}
      ]},
      {day:'Day 3', weekDay:'SUN', display:'27',date:'Sep 27',city:'Tokyo / 東京',plans:[
        {time:'11:00',title:'Kappabashi Kitchenware Town / 合羽橋道具街',note:'在專業刀具專門店 Cutlery Tsubaya 挑選職人手打高品質日本廚刀。 / Pick out high-quality handcrafted Japanese kitchen knives at Cutlery Tsubaya.', isWalk: true},
-       {time:'12:30',title:'Ginza Omakase & Itoya / 銀座 Omakase 與 Itoya',note:'前往銀座品嚐高性價比午間極鮮 Omakase 壽司盛宴，隨後開逛 Ginza Itoya 與百貨地下街。 / Enjoy a cost-effective midday Omakase sushi feast in Ginza, then explore Ginza Itoya and department store basements.', isFood: true},
+       {time:'12:30',title:'Ginza Omakase & Itoya / 銀座 Omakase 與 Itoya (Loft 旗艦)',note:'前往銀座品嚐午間極鮮 Omakase 壽司，隨後開逛 Ginza Itoya 與銀座 Loft 旗艦店。 / Enjoy midday Omakase sushi in Ginza, then explore Ginza Itoya and Ginza Loft flagship store.', isFood: true},
        {time:'18:00',title:'Tokyo Station Marunouchi & KITTE / 東京站丸之內與 KITTE',note:'登上 KITTE 4F/6F 屋頂庭園，俯瞰百年紅磚車站建築的絕美照明與都市天際線。 / Head to KITTE rooftop garden to view the beautifully illuminated historic red-brick Tokyo Station.', isArch: true, isNight: true},
        {time:'20:00',title:'Ichiran Ramen Ueno / 上野一蘭拉麵',note:'返回上野前往一蘭拉麵朝聖，滿足在日本吃一蘭的心願。 / Return to Ueno to visit Ichiran Ramen and satisfy the wish of eating Ichiran in Japan.', isFood: true}
      ]},
-     {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo / 東京',plans:[
-       {time:'11:00',title:'Shimokitazawa Subculture Walk / 下北澤次文化散策',note:'漫步於古著巷弄、BONUS TRACK 木造社區與幾何街區，午餐品嚐北海道湯咖哩。 / Stroll through Shimokitazawa vintage alleys and wooden communities, and enjoy Hokkaido soup curry for lunch.', isWalk: true, isFood: true},
-       {time:'15:00',title:'Tokyo Station Yaesu Whisky & Shopping / 東京站八重洲尋酒與掃貨',note:'前往八重洲地下街 Liquors Hasegawa 尋找 Kilchoman 日本限定版威士忌，並進行藥妝與唐吉訶德掃貨。 / Visit Liquors Hasegawa in Yaesu underground mall for Japanese limited whisky, followed by drugstores and Don Quijote shopping.', isWalk: true},
+     {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo / 東京 (Harry Potter Theme)',plans:[
+       {time:'10:00',title:'Warner Bros. Studio Tour Tokyo / 哈利波特影城',note:'【朝聖哈利波特】沉浸式體驗華納兄弟哈利波特片場世界，探索霍格華茲魔法世界。 / [Harry Potter Pilgrimage] Immersive experience at Warner Bros. Studio Tour Tokyo - The Making of Harry Potter.', isWalk: true, hasTicket: true},
+       {time:'16:00',title:'Ikebukuro Sunshine City & Loft / 池袋 Sunshine City 與 Loft',note:'前往池袋逛 Sunshine City，並造訪大型池袋 Loft 採購動漫周邊與精緻生活雜貨。 / Visit Sunshine City in Ikebukuro and shop at the massive Ikebukuro Loft for lifestyle goods.', isWalk: true},
        {time:'18:30',title:'Roppongi Hills & Tokyo Tower / 六本木與東京鐵塔夜景',note:'近距離欣賞標誌性的東京鐵塔璀璨夜景，隨後與老同學於社區小酒館乾杯。 / Admire the iconic Tokyo Tower night view near Roppongi Hills, then share drinks with an old friend at a local bistro.', isNight: true}
      ]},
      {day:'Day 5', weekDay:'TUE', display:'29',date:'Sep 29',city:'Tokyo (Kiyosumi-shirakawa) / 東京清澄白河',plans:[
@@ -542,24 +549,14 @@ createApp({
    });
 
    const attractionDetails = [
-      { city: 'TYO', name: '新宿 (Shinjuku)', tag: 'Landmark / 地標', desc: '集結購物商場、高空展望台與懷舊橫丁的東京核心繁華街區。 / Core bustling district of Tokyo featuring shopping malls, observation decks, and retro alleys.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0255.webp', address: '東京都新宿区 / Shinjuku, Tokyo' },
+      { city: 'TYO', name: '華納兄弟哈利波特影城 (Warner Bros. Studio Tour Tokyo)', tag: 'Theme / 景點', desc: '全球最大的哈利波特室內景點，帶領你走入霍格華茲、斜角巷與魔法世界幕後。 / The world\'s largest indoor Harry Potter attraction, immersing you in Hogwarts and Diagon Alley.', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=300&auto=format&fit=crop', address: '東京都練馬区春日町 1-1-7' },
+      { city: 'TYO', name: 'Loft (澀谷/銀座/池袋旗艦店)', tag: 'Shopping / 購物', desc: '日本最具代表性的生活雜貨與文具選物店，滿足尋找特色手帳與伴手禮的需求。 / Japan\'s iconic lifestyle and stationery department store for unique souvenirs and goods.', img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop', address: '東京都澀谷区宇田川町 21-1 (澀谷店)' },
+      { city: 'TYO', name: '新宿 (Shinjuku)', tag: 'Landmark / 地標', desc: '集結購物商場、高空展望台與懷舊橫丁的東京核心繁華街區。 / Core bustling district of Tokyo featuring shopping malls, observation decks, and retro alleys.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0255.webp', address: '東京都新宿区' },
       { city: 'TYO', name: '皇居外苑 (Imperial Palace Gaien)', tag: 'Garden / 庭園', desc: '擁有寬闊護城河、松樹林與歷史美景的市中心自然休憩勝地。 / Central natural retreat featuring spacious moats, pine forests, and historic scenery.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0256.webp', address: '東京都千代田区皇居外苑 1-1' },
       { city: 'TYO', name: '淺草 Hoppy 通 (Hoppy Street)', tag: 'Food / 美食', desc: '充滿露天煙火氣與在地人情味的懷舊居酒屋巷弄。 / Nostalgic izakaya alley filled with lively open-air atmosphere and local charm.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0257.webp', address: '東京都台東区浅草 2-3' },
       { city: 'TYO', name: '思出橫丁 (Omoide Yokocho)', tag: 'Food / 美食', desc: '充滿昭和復古風情的狹窄串燒居酒屋聚集地。 / Narrow alley gathering spot of retro Showa-era yakitori izakayas.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0258.jpeg', address: '東京都新宿区西新宿 1-2' },
       { city: 'TYO', name: '原宿 (Harajuku)', tag: 'Culture / 文化', desc: '引領日本街頭流行美學與次文化的重要潮流據點。 / Major trendsetting hub driving Japanese street fashion aesthetics and subculture.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0259.webp', address: '東京都渋谷区原宿' },
-      { city: 'TYO', name: '代官山 (Daikanyama)', tag: 'Culture / 文化', desc: '充滿優雅氛圍、獨立書店與精緻咖啡美學的高級住宅散策區。 / Upscale residential stroll area with elegant vibes, independent bookstores, and refined coffee culture.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0260.jpeg', address: '東京都渋谷区代官山町' },
-      { city: 'TYO', name: '仲見世通 (Nakamise-dori)', tag: 'Culture / 文化', desc: '位於淺草寺前的歷史悠久商店街，沿路販售各式傳統小吃與伴手禮。 / Historic shopping street leading to Senso-ji Temple, selling traditional snacks and souvenirs.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/39cc66dc513ea5c93763f7f7fabeee59fdaa6525/IMG_0252.webp', address: '東京都台東区浅草 2-3-1' },
-      { city: 'TYO', name: '清澄庭園 (Kiyosumi Gardens)', tag: 'Garden / 庭園', desc: '以泉水、假山和名石為特色的東京都指定名勝迴遊式林泉庭園。 / Tokyo-designated scenic strolling landscape garden featuring springs, artificial hills, and fine stones.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/39cc66dc513ea5c93763f7f7fabeee59fdaa6525/IMG_0253.webp', address: '東京都江東区清澄 3-3-9' },
-      { city: 'TYO', name: 'Blue Bottle Coffee', tag: 'Cafe / 咖啡', desc: '清澄白河旗艦店，享受極致手沖咖啡與悠閒極簡空間。 / Kiyosumi-shirakawa flagship store offering exceptional pour-overs in a minimalist relaxing space.', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=300&auto=format&fit=crop', address: '東京都江東区平野 1-4-8' },
-      { city: 'TYO', name: 'スシエビスHana恵比寿本店 (Sushi Ebisu Hana)', tag: 'Dining / 美食', desc: '人氣爆紅的壽司居酒屋，提供高性價比的創意壽司與海鮮料理。 / Popular trendy sushi izakaya offering cost-effective creative sushi and seafood dishes.', img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=300&auto=format&fit=crop', address: '東京都渋谷区恵比寿西 1-9-4' },
-      { city: 'TYO', name: '京辰 (Sushi Kyotatsu)', tag: 'Dining / 美食', desc: '嚴選頂級新鮮食材的江戶前壽司名店，職人手作滋味細緻。 / Premier Edomae sushi restaurant hand-crafting exquisite flavors from top-grade fresh ingredients.', img: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=300&auto=format&fit=crop', address: '東京都中央区築地 4-13-18' },
-      { city: 'TYO', name: '根室花丸 (Nemuro Hanamaru)', tag: 'Dining / 美食', desc: '超人氣北海道根室直送迴轉壽司，鮮美干貝與生鮮食材大受好評. / Highly popular conveyor-belt sushi directly sourced from Nemuro, Hokkaido.', img: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=300&auto=format&fit=crop', address: '東京都千代田区丸の内 2-7-2 JPタワー KITTE 5F' },
-      { city: 'TYO', name: '竹葉亭 (Chikuyotei)', tag: 'Dining / 美食', desc: '百年歷史的頂級鰻魚飯老店，炭烤蒲燒鰻魚口感鬆軟綿密。 / Century-old high-end eel rice restaurant serving tender, charcoal-grilled unagi.', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 8-14-7' },
-      { city: 'TYO', name: '鮨よしかわ勝 銀座 (Sushi Yoshikawa)', tag: 'Dining / 美食', desc: '銀座精緻高雅的無菜單 Omakase 壽司料理，體驗極致味蕾饗宴。 / Refined and elegant Omakase sushi dining experience in Ginza.', img: 'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 6-4-3' },
-      { city: 'TYO', name: 'りょうけん六本木 (Ryoken Roppongi)', tag: 'Dining / 美食', desc: '六本木高級私密割烹料理，融合當季食材的藝術級懷石饗宴。 / Exclusive private kappo cuisine in Roppongi featuring artistic seasonal kaiseki dishes.', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=300&auto=format&fit=crop', address: '東京都港区六本木 4-12-12' },
-      { city: 'TYO', name: '鮨はつめ 新宿 (Sushi Hatsume Shinjuku)', tag: 'Dining / 美食', desc: '新宿隱密性極高的頂級壽司店，職人手藝精湛、嚴選當令漁獲。 / Highly hidden high-end sushi restaurant in Shinjuku with master craftsmanship.', img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=300&auto=format&fit=crop', address: '東京都新宿区歌舞伎町 1-1-16' },
-      { city: 'TYO', name: 'YAKINIKU MARUUSHI', tag: 'Dining / 美食', desc: '嚴選黑毛和牛的高級燒肉名店，肉質油花均勻、入口即化。 / Premium Wagyu yakiniku specialty store with beautifully marbled, melt-in-your-mouth beef.', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=300&auto=format&fit=crop', address: '東京都中央区銀座 1-5-10' },
-      { city: 'TYO', name: 'モリタ屋 (Moritaya)', tag: 'Dining / 美食', desc: '京都起家的百年老牌壽喜燒名店，品嚐頂級和牛與濃郁醬汁交織的美味。 / Century-old Kyoto-origin sukiyaki specialty restaurant serving premium Wagyu beef.', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=300&auto=format&fit=crop', address: '東京都千代田区丸の内 2-7-2 KITTE 5F' }
+      { city: 'TYO', name: '代官山 (Daikanyama)', tag: 'Culture / 文化', desc: '充滿優雅氛圍、獨立書店與精緻咖啡美學的高級住宅散策區。 / Upscale residential stroll area with elegant vibes, independent bookstores, and refined coffee culture.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0260.jpeg', address: '東京都渋谷区代官山町' }
    ];
 
    return{tab,weatherTyo,countText,days,selDay,rateCad,rateMop,e,cats,pays,records,addRec,delRec,catIcon,totalExpense,attractionDetails};
