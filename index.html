@@ -488,9 +488,9 @@ createApp({
        {time:'18:00',title:'Tokyo Station Marunouchi & KITTE / 東京站丸之內與 KITTE',note:'登上 KITTE 4F/6F 屋頂庭園，俯瞰百年紅磚車站建築的絕美照明與都市天際線。 / Head to KITTE rooftop garden to view the beautifully illuminated historic red-brick Tokyo Station.', isArch: true, isNight: true},
        {time:'20:00',title:'Ichiran Ramen Ueno / 上野一蘭拉麵',note:'返回上野前往一蘭拉麵朝聖，滿足在日本吃一蘭的心願。 / Return to Ueno to visit Ichiran Ramen and satisfy the wish of eating Ichiran in Japan.', isFood: true}
      ]},
-     {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo / 東京 (Harry Potter Theme)',plans:[
-       {time:'10:00',title:'Warner Bros. Studio Tour Tokyo / 哈利波特影城',note:'【朝聖哈利波特】沉浸式體驗華納兄弟哈利波特片場世界，探索霍格華茲魔法世界。 / [Harry Potter Pilgrimage] Immersive experience at Warner Bros. Studio Tour Tokyo - The Making of Harry Potter.', isWalk: true, hasTicket: true},
-       {time:'16:00',title:'Ikebukuro Sunshine City & Loft / 池袋 Sunshine City 與 Loft',note:'前往池袋逛 Sunshine City，並造訪大型池袋 Loft 採購動漫周邊與精緻生活雜貨。 / Visit Sunshine City in Ikebukuro and shop at the massive Ikebukuro Loft for lifestyle goods.', isWalk: true},
+     {day:'Day 4', weekDay:'MON', display:'28',date:'Sep 28',city:'Tokyo / 東京',plans:[
+       {time:'11:00',title:'Shimokitazawa Subculture Walk / 下北澤次文化散策',note:'漫步於古著巷弄、BONUS TRACK 木造社區與幾何街區，午餐品嚐北海道湯咖哩。 / Stroll through Shimokitazawa vintage alleys and wooden communities, and enjoy Hokkaido soup curry for lunch.', isWalk: true, isFood: true},
+       {time:'15:00',title:'Tokyo Station Yaesu Whisky & Shopping / 東京站八重洲尋酒與購物',note:'前往八重洲地下街 Liquors Hasegawa 尋找威士忌，並探索周邊特色小店。 / Visit Liquors Hasegawa in Yaesu underground mall for whisky and explore specialty shops.', isWalk: true},
        {time:'18:30',title:'Roppongi Hills & Tokyo Tower / 六本木與東京鐵塔夜景',note:'近距離欣賞標誌性的東京鐵塔璀璨夜景，隨後與老同學於社區小酒館乾杯。 / Admire the iconic Tokyo Tower night view near Roppongi Hills, then share drinks with an old friend at a local bistro.', isNight: true}
      ]},
      {day:'Day 5', weekDay:'TUE', display:'29',date:'Sep 29',city:'Tokyo (Kiyosumi-shirakawa) / 東京清澄白河',plans:[
@@ -549,8 +549,7 @@ createApp({
    });
 
    const attractionDetails = [
-      { city: 'TYO', name: '華納兄弟哈利波特影城 (Warner Bros. Studio Tour Tokyo)', tag: 'Theme / 景點', desc: '全球最大的哈利波特室內景點，帶領你走入霍格華茲、斜角巷與魔法世界幕後。 / The world\'s largest indoor Harry Potter attraction, immersing you in Hogwarts and Diagon Alley.', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=300&auto=format&fit=crop', address: '東京都練馬区春日町 1-1-7' },
-      { city: 'TYO', name: 'Loft (澀谷/銀座/池袋旗艦店)', tag: 'Shopping / 購物', desc: '日本最具代表性的生活雜貨與文具選物店，滿足尋找特色手帳與伴手禮的需求。 / Japan\'s iconic lifestyle and stationery department store for unique souvenirs and goods.', img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop', address: '東京都澀谷区宇田川町 21-1 (澀谷店)' },
+      { city: 'TYO', name: 'Loft (澀谷/銀座/池袋旗艦店)', tag: 'Shopping / 購物', desc: '日本最具代表性的生活雜貨與文具選物店，滿足尋找特色手帳與伴手禮的需求。 / Japan\'s iconic lifestyle and stationery department store for unique souvenirs and goods.', img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop', address: '東京都渋谷区宇田川町 21-1 (澀谷店)' },
       { city: 'TYO', name: '新宿 (Shinjuku)', tag: 'Landmark / 地標', desc: '集結購物商場、高空展望台與懷舊橫丁的東京核心繁華街區。 / Core bustling district of Tokyo featuring shopping malls, observation decks, and retro alleys.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0255.webp', address: '東京都新宿区' },
       { city: 'TYO', name: '皇居外苑 (Imperial Palace Gaien)', tag: 'Garden / 庭園', desc: '擁有寬闊護城河、松樹林與歷史美景的市中心自然休憩勝地。 / Central natural retreat featuring spacious moats, pine forests, and historic scenery.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0256.webp', address: '東京都千代田区皇居外苑 1-1' },
       { city: 'TYO', name: '淺草 Hoppy 通 (Hoppy Street)', tag: 'Food / 美食', desc: '充滿露天煙火氣與在地人情味的懷舊居酒屋巷弄。 / Nostalgic izakaya alley filled with lively open-air atmosphere and local charm.', img: 'https://raw.githubusercontent.com/kerryraquel/Travel-Image/9b65aa57dcadc2570367bdb36d5de185fbb332a7/IMG_0257.webp', address: '東京都台東区浅草 2-3' },
